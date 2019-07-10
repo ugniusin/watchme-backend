@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8090:8090
+    depends_on:
+      - mysql
+    networks:
+      - backend
+    volumes:
+      - .:/go/src/github.com/ugniusin/watchme
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    restart: always
+    environment:
+      MYSQL_DATABASE: watchme
+      MYSQL_USER: root
+      MYSQL_PASSWORD: toor
+      MYSQL_ROOT_PASSWORD: toor
+    networks:
+      - backend
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+
+networks:
+  backend:
