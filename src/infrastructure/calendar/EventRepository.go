@@ -24,9 +24,6 @@ func (eventRepository *EventRepository) Save(event calendar.Event) {
 
 	// Insert
 	if res, err = o.Insert(&event); err != nil {
-
-		log.Println("2!!!")
-
 		log.Println(err)
 	}
 	log.Printf("inserted: %d row", res)

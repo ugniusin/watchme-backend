@@ -20,7 +20,6 @@ func BuildContainer() *dig.Container {
 	//calendar.BuildContainer(container)
 
 	container.Provide(config.NewConfiguration)
-
 	container.Provide(database.NewDatabase)
 
 	container.Provide(controllers.NewCalendarController)

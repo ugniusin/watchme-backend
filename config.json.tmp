@@ -1,7 +1,11 @@
 {
-  "Instagram": {
-    "ClientId": "abc123",
-    "ClientSecret": "secret123",
-    "RedirectUri": "http://localhost:8090/redirect"
+  "database": {
+    "dbAlias": "default",
+    "mysqlUser": "root",
+    "mysqlPassword": "toor",
+    "mysqlHost": "mysql",
+    "mysqlPort": "3306",
+    "mysqlDatabase": "watchme",
+    "mysqlCharset": "utf8"
   }
 }

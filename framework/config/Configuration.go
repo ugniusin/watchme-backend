@@ -9,7 +9,6 @@ import (
 const fileName = "./config.json"
 
 type Configuration struct {
-	Instagram map[string]string
 	Database map[string]string
 }
 
