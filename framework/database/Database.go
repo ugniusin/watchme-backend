@@ -2,47 +2,35 @@ package database
 
 import (
 	"fmt"
+	"github.com/ugniusin/watchme/framework/config"
 	"time"
 
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
 )
 
-const (
-	dbAlias       = "default"
-	mysqlUser     = "root"
-	mysqlPassword = "toor"
-	mysqlHost     = "mysql"
-	mysqlPort     = 3306
-	mysqlDatabase = "watchme"
-	mysqlCharset  = "utf8"
-)
-
-var (
-	mysqlCon = fmt.Sprintf(
-		"%s:%s@tcp(%s:%d)/%s?charset=%s",
-		mysqlUser,
-		mysqlPassword,
-		mysqlHost,
-		mysqlPort,
-		mysqlDatabase,
-		mysqlCharset,
-	)
-)
-
 type Database struct {
+	configuration *config.Configuration
 }
 
-func NewDatabase() *Database {
+func NewDatabase(configuration *config.Configuration) *Database {
+	return &Database{
+		configuration: configuration,
+	}
+}
 
-	mysqlCon = fmt.Sprintf(
-		"%s:%s@tcp(%s:%d)/%s?charset=%s",
-		mysqlUser,
-		mysqlPassword,
-		mysqlHost,
-		mysqlPort,
-		mysqlDatabase,
-		mysqlCharset,
+func (database *Database) BootstrapDatabase() {
+
+	fmt.Println(database.configuration.Database)
+
+	mysqlCon := fmt.Sprintf(
+		"%s:%s@tcp(%s:%s)/%s?charset=%s",
+		database.configuration.Database["mysqlUser"],
+		database.configuration.Database["mysqlPassword"],
+		database.configuration.Database["mysqlHost"],
+		database.configuration.Database["mysqlPort"],
+		database.configuration.Database["mysqlDatabase"],
+		database.configuration.Database["mysqlCharset"],
 	)
 
 	// register driver
@@ -55,12 +43,8 @@ func NewDatabase() *Database {
 	orm.DefaultTimeLoc = time.UTC
 
 	// set default database
-	orm.RegisterDataBase(dbAlias, "mysql", mysqlCon)
+	orm.RegisterDataBase(database.configuration.Database["dbAlias"], "mysql", mysqlCon)
 
 
 	fmt.Println("DB registered!")
-
-	return &Database{
-
-	}
 }

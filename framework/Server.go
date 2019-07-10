@@ -3,29 +3,32 @@ package framework
 import (
 	"github.com/go-zoo/bone"
 	"github.com/ugniusin/watchme/framework/config"
+	"github.com/ugniusin/watchme/framework/database"
 	"net/http"
 )
 
 type Server struct {
 	configuration *config.Configuration
 	frontController *FrontController
+	database *database.Database
 }
 
 func NewServer(
 	configuration *config.Configuration,
 	frontController *FrontController,
+	database *database.Database,
 ) *Server {
 
 	return &Server{
 		configuration: configuration,
 		frontController: frontController,
+		database: database,
 	}
 }
 
 func (s *Server) Run() {
 
-	//http.HandleFunc("/calendar", s.frontController.calendarController.Calendar)
-	//http.HandleFunc("/insert", s.frontController.calendarController.InsertUser)
+	s.database.BootstrapDatabase()
 
 	mux := bone.New()
 
@@ -33,8 +36,4 @@ func (s *Server) Run() {
 	mux.Get("/insert", http.HandlerFunc(s.frontController.calendarController.InsertUser))
 
 	http.ListenAndServe(":8090", mux)
-
-
-
-	//http.ListenAndServe(":8090", nil)
 }

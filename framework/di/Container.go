@@ -11,7 +11,6 @@ import (
 )
 
 type Container struct {
-
 }
 
 
@@ -20,13 +19,14 @@ func BuildContainer() *dig.Container {
 
 	//calendar.BuildContainer(container)
 
+	container.Provide(config.NewConfiguration)
+
 	container.Provide(database.NewDatabase)
 
 	container.Provide(controllers.NewCalendarController)
 	container.Provide(calendar.NewEventCreator)
 	container.Provide(calendar2.NewEventRepository, dig.As(new(calendar.EventRepository)))
 
-	container.Provide(config.NewConfiguration)
 	container.Provide(framework.NewFrontController)
 	container.Provide(framework.NewServer)
 
