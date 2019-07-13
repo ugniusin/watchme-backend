@@ -28,4 +28,3 @@ EXPOSE 8090
 
 # Run the executable
 CMD ["realize", "start"]
-#CMD ["watchme"]

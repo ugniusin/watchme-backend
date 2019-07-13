@@ -14,9 +14,15 @@ schema:
       install:
         status: true
         method: go install -v ./...
+        output: true
+      build:
+        status: true
+        method: go build -o watchme
+        output: true
       run:
         status: true
         method: watchme
+        output: true
     watcher:
       paths:
         - /
