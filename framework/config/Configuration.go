@@ -13,6 +13,9 @@ type Configuration struct {
 }
 
 func NewConfiguration() *Configuration {
+
+	fmt.Println("!?")
+
 	file, _ := os.Open(fileName)
 	defer file.Close()
 	decoder := json.NewDecoder(file)

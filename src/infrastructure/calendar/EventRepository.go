@@ -3,7 +3,7 @@ package calendar
 import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
-	"github.com/ugniusin/watchme/src/domain/calendar"
+	calendar2 "github.com/ugniusin/watchme/src/domain/calendar"
 	"log"
 )
 
@@ -14,7 +14,7 @@ func NewEventRepository() *EventRepository {
 	return &EventRepository{}
 }
 
-func (eventRepository *EventRepository) Save(event calendar.Event) {
+func (eventRepository *EventRepository) Save(event calendar2.Event) {
 
 	o := orm.NewOrm()
 	o.Using("default")

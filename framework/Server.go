@@ -33,7 +33,7 @@ func (s *Server) Run() {
 	mux := bone.New()
 
 	mux.Get("/calendar/:username", http.HandlerFunc(s.frontController.calendarController.Calendar))
-	mux.Get("/insert", http.HandlerFunc(s.frontController.calendarController.InsertUser))
+	mux.Post("/event", http.HandlerFunc(s.frontController.calendarController.CreateEvent))
 
 	http.ListenAndServe(":8090", mux)
 }

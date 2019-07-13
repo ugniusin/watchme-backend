@@ -5,17 +5,18 @@ import (
 	"github.com/go-zoo/bone"
 	"github.com/ugniusin/watchme/src/domain/calendar"
 	"net/http"
+	"time"
 )
 
 type CalendarController struct {
-	EventCreator *calendar.EventCreator
+	eventRepository calendar.EventRepository
 }
 
 func NewCalendarController(
-	eventCreator *calendar.EventCreator,
+	eventRepository calendar.EventRepository,
 ) *CalendarController {
 	return &CalendarController{
-		eventCreator,
+		eventRepository,
 	}
 }
 
@@ -33,9 +34,37 @@ func (controller *CalendarController) Calendar (w http.ResponseWriter, req *http
 	w.Write(js)
 }
 
-func (controller *CalendarController) InsertUser (w http.ResponseWriter, req *http.Request)  {
+func (controller *CalendarController) CreateEvent (w http.ResponseWriter, req *http.Request)  {
 
-	controller.EventCreator.Create()
+	decoder := json.NewDecoder(req.Body)
+
+	type RequestBody struct {
+		Name      string
+		FromDate  string
+		ToDate    string
+		EventType string
+	}
+
+	var requestBody RequestBody
+
+	err := decoder.Decode(&requestBody)
+	if err != nil {
+		panic(err)
+	}
+
+	layout := "2006-01-02 15:04:05"
+
+	fromDate, err := time.Parse(layout, requestBody.FromDate)
+	toDate, err := time.Parse(layout, requestBody.ToDate)
+
+	event := calendar.NewEvent(
+		requestBody.Name,
+		fromDate,
+		toDate,
+		calendar.EventType(requestBody.EventType),
+	)
+
+	controller.eventRepository.Save(*event)
 
 	js, err := json.Marshal(true)
 	if err != nil {

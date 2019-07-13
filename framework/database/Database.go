@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	"github.com/ugniusin/watchme/framework/config"
+	config2 "github.com/ugniusin/watchme/framework/config"
 	"time"
 
 	"github.com/astaxie/beego/orm"
@@ -10,10 +10,10 @@ import (
 )
 
 type Database struct {
-	configuration *config.Configuration
+	configuration *config2.Configuration
 }
 
-func NewDatabase(configuration *config.Configuration) *Database {
+func NewDatabase(configuration *config2.Configuration) *Database {
 	return &Database{
 		configuration: configuration,
 	}
