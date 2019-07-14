@@ -2,7 +2,8 @@ version: "3.7"
 
 services:
 
-  app:
+  backend:
+    container_name: backend
     build:
       context: .
       dockerfile: Dockerfile
@@ -19,6 +20,7 @@ services:
       - mysql
 
   mysql:
+    container_name: mysql
     image: mysql:5.7
     ports:
       - 3306:3306
