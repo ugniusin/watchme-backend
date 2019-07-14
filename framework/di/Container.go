@@ -1,12 +1,12 @@
 package di
 
 import (
-	"github.com/ugniusin/watchme/framework"
-	config2 "github.com/ugniusin/watchme/framework/config"
-	database2 "github.com/ugniusin/watchme/framework/database"
-	"github.com/ugniusin/watchme/src/application/calendar/controllers"
-	"github.com/ugniusin/watchme/src/domain/calendar"
-	calendar2 "github.com/ugniusin/watchme/src/infrastructure/calendar"
+	"github.com/ugniusin/watchme-backend/framework"
+	config2 "github.com/ugniusin/watchme-backend/framework/config"
+	database2 "github.com/ugniusin/watchme-backend/framework/database"
+	"github.com/ugniusin/watchme-backend/src/application/calendar/controllers"
+	"github.com/ugniusin/watchme-backend/src/domain/calendar"
+	calendar2 "github.com/ugniusin/watchme-backend/src/infrastructure/calendar"
 	"go.uber.org/dig"
 )
 

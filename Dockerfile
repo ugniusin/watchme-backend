@@ -5,7 +5,7 @@ FROM golang:1.12-alpine
 RUN apk update && apk add --no-cache git
 
 # Set the Current Working Directory inside the container
-WORKDIR $GOPATH/src/github.com/ugniusin/watchme
+WORKDIR $GOPATH/src/github.com/ugniusin/watchme-backend
 
 # Copy everything from the current directory to the PWD(Present Working Directory) inside the container
 COPY . .

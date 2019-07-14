@@ -1,4 +1,4 @@
-module github.com/ugniusin/watchme
+module github.com/ugniusin/watchme-backend
 
 go 1.12
 

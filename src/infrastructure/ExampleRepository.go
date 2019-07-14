@@ -28,7 +28,7 @@ const (
 	mysqlPassword = "toor"
 	mysqlHost     = "mysql"
 	mysqlPort     = 3306
-	mysqlDatabase = "watchme"
+	mysqlDatabase = "watchme-backend"
 	mysqlCharset  = "utf8"
 )
 

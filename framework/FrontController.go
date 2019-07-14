@@ -1,7 +1,7 @@
 package framework
 
 import (
-	calendarControllers "github.com/ugniusin/watchme/src/application/calendar/controllers"
+	calendarControllers "github.com/ugniusin/watchme-backend/src/application/calendar/controllers"
 )
 
 type FrontController struct {

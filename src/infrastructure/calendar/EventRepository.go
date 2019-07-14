@@ -3,7 +3,7 @@ package calendar
 import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
-	calendar2 "github.com/ugniusin/watchme/src/domain/calendar"
+	calendar2 "github.com/ugniusin/watchme-backend/src/domain/calendar"
 	"log"
 )
 

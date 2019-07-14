@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/ugniusin/watchme/framework"
-	"github.com/ugniusin/watchme/framework/di"
+	"github.com/ugniusin/watchme-backend/framework"
+	"github.com/ugniusin/watchme-backend/framework/di"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/go-zoo/bone"
-	"github.com/ugniusin/watchme/src/domain/calendar"
+	"github.com/ugniusin/watchme-backend/src/domain/calendar"
 	"net/http"
 	"time"
 )

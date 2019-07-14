@@ -1,4 +1,5 @@
 version: "3.7"
+
 services:
 
   app:
@@ -10,9 +11,12 @@ services:
     depends_on:
       - mysql
     networks:
-      - backend
+      - watchme_network
     volumes:
-      - .:/go/src/github.com/ugniusin/watchme
+      - .:/go/src/github.com/ugniusin/watchme-backend
+    restart: on-failure
+    links:
+      - mysql
 
   mysql:
     image: mysql:5.7
@@ -27,12 +31,17 @@ services:
       MYSQL_PASSWORD: toor
       MYSQL_ROOT_PASSWORD: toor
     networks:
-      - backend
+      - watchme_network
     volumes:
       - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://mysql:3306"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
 volumes:
   db_data:
 
 networks:
-  backend:
+  watchme_network:

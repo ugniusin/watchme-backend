@@ -2,8 +2,8 @@ package framework
 
 import (
 	"github.com/go-zoo/bone"
-	"github.com/ugniusin/watchme/framework/config"
-	"github.com/ugniusin/watchme/framework/database"
+	"github.com/ugniusin/watchme-backend/framework/config"
+	"github.com/ugniusin/watchme-backend/framework/database"
 	"net/http"
 )
 

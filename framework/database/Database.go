@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	config2 "github.com/ugniusin/watchme/framework/config"
+	config2 "github.com/ugniusin/watchme-backend/framework/config"
 	"time"
 
 	"github.com/astaxie/beego/orm"

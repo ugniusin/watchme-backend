@@ -17,11 +17,11 @@ schema:
         output: true
       build:
         status: true
-        method: go build -o watchme
+        method: go build -o watchme-backend
         output: true
       run:
         status: true
-        method: watchme
+        method: watchme-backend
         output: true
     watcher:
       paths:
