@@ -9,13 +9,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8090:8090
-    depends_on:
-      - mysql
     networks:
       - watchme_network
     volumes:
       - .:/go/src/github.com/ugniusin/watchme-backend
-    restart: on-failure
     links:
       - mysql
 
@@ -36,11 +33,6 @@ services:
       - watchme_network
     volumes:
       - db_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://mysql:3306"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
 
 volumes:
   db_data:

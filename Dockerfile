@@ -1,8 +1,14 @@
 # Start from golang:1.12-alpine base image
 FROM golang:1.12-alpine
 
-# Git is required for fetching the dependencies.
-RUN apk update && apk add --no-cache git
+# Add apk dependencies
+RUN apk update && apk add --no-cache git openssl
+
+# Add Dockerize to wait for MySQL
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Set the Current Working Directory inside the container
 WORKDIR $GOPATH/src/github.com/ugniusin/watchme-backend
@@ -27,4 +33,4 @@ RUN go get github.com/oxequa/realize
 EXPOSE 8090
 
 # Run the executable
-CMD ["realize", "start"]
+CMD dockerize -wait tcp://mysql:3306 -timeout 60m realize start
