@@ -1,5 +1,6 @@
 package calendar
 
 type EventRepository interface {
-	Save(event Event)
+	FindOne (id int) (Event, error)
+	Save (event Event) int
 }

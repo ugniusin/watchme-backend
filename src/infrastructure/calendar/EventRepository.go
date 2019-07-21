@@ -3,7 +3,8 @@ package calendar
 import (
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
-	calendar2 "github.com/ugniusin/watchme-backend/src/domain/calendar"
+	domainCalendar "github.com/ugniusin/watchme-backend/src/domain/calendar"
+	"github.com/ugniusin/watchme-backend/src/shared/infrastructure/errors"
 	"log"
 )
 
@@ -14,10 +15,27 @@ func NewEventRepository() *EventRepository {
 	return &EventRepository{}
 }
 
-func (eventRepository *EventRepository) Save(event calendar2.Event) {
+func (eventRepository *EventRepository) FindOne (id int) (domainCalendar.Event, error) {
 
 	o := orm.NewOrm()
-	o.Using("default")
+
+	// read one
+	event := domainCalendar.Event{Id: id}
+
+	var err error
+
+	if err = o.Read(&event); err != nil {
+		err := errors.NewError("Event not found")
+
+		return domainCalendar.Event{}, err
+	}
+
+	return event, nil
+}
+
+func (eventRepository *EventRepository) Save (event domainCalendar.Event) int {
+
+	o := orm.NewOrm()
 
 	var res int64
 	var err error
@@ -27,4 +45,6 @@ func (eventRepository *EventRepository) Save(event calendar2.Event) {
 		log.Println(err)
 	}
 	log.Printf("inserted: %d row", res)
+
+	return event.Id
 }
