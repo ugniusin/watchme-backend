@@ -20,6 +20,6 @@ func NewRouter(
 
 func (router *Router) RegisterRoutes(mux *bone.Mux) {
 
-	routesProvider := calendar.NewRoutersProvider(mux)
-	routesProvider.RegisterRoutes(router.frontController.calendarController)
+	calendarRouter := calendar.NewRouter(mux)
+	calendarRouter.RegisterRoutes(router.frontController.calendarController)
 }
