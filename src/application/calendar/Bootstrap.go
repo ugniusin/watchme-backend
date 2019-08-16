@@ -8,7 +8,7 @@ import (
 )
 
 func Bootstrap(container *dig.Container) {
+
 	container.Provide(controllers.NewCalendarController)
 	container.Provide(calendar2.NewEventRepository, dig.As(new(calendar.EventRepository)))
-
 }

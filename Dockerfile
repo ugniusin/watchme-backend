@@ -1,8 +1,8 @@
-# Start from golang:1.12-alpine base image
-FROM golang:1.12-alpine
+# Start from golang:1.12-stretch base image
+FROM golang:1.12-stretch
 
 # Add apk dependencies
-RUN apk update && apk add --no-cache git openssl
+RUN apt-get update && apt-get install -y git openssl
 
 # Add Dockerize to wait for MySQL
 ENV DOCKERIZE_VERSION v0.6.1
@@ -28,6 +28,9 @@ RUN go install -v ./...
 
 # Install package to watch changes
 RUN go get github.com/oxequa/realize
+
+# Install package to run migrations
+RUN go get -v github.com/rubenv/sql-migrate/...
 
 # This container exposes port 8090 to the outside world
 EXPOSE 8090

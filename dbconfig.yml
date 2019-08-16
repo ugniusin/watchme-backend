@@ -1,0 +1,5 @@
+development:
+  dialect: mysql
+  datasource: root:toor@tcp(mysql:3306)/watchme?parseTime=true
+  dir: framework/database/migrations
+  table: migrations
